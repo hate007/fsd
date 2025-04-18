@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="studentApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Details Table</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body { font-family: Arial; margin: 30px; }
+    table {
+      border-collapse: collapse;
+      width: 80%;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+  </style>
+</head>
+<body ng-controller="StudentController">
+
+  <h2>Student Details</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Roll No</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Course</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="student in students">
+        <td>{{ student.rollNo }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.course }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    angular.module('studentApp', [])
+      .controller('StudentController', function($scope) {
+        $scope.students = [
+          { rollNo: 1, name: 'Alice', age: 20, course: 'Computer Science' },
+          { rollNo: 2, name: 'Bob', age: 21, course: 'Mathematics' },
+          { rollNo: 3, name: 'Charlie', age: 22, course: 'Physics' },
+          { rollNo: 4, name: 'David', age: 23, course: 'Chemistry' },
+          { rollNo: 5, name: 'Eva', age: 20, course: 'Biology' },
+          { rollNo: 6, name: 'Frank', age: 21, course: 'Economics' },
+          { rollNo: 7, name: 'Grace', age: 22, course: 'History' },
+          { rollNo: 8, name: 'Henry', age: 23, course: 'Philosophy' },
+          { rollNo: 9, name: 'Isla', age: 20, course: 'Sociology' },
+          { rollNo: 10, name: 'Jack', age: 21, course: 'Statistics' }
+        ];
+      });
+  </script>
+
+</body>
+</html>
+

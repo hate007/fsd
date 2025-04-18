@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mscApp">
+<head>
+    <meta charset="UTF-8">
+    <title>M.Sc (CS) Sem-II Syllabus</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+    <script src="app.js"></script>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        nav a { margin: 10px; display: inline-block; }
+    </style>
+</head>
+<body>
+
+    <h1>M.Sc (CS) Sem-II Syllabus</h1>
+
+    <nav>
+        <a href="#!/os">Operating Systems</a>
+        <a href="#!/dbms">DBMS</a>
+        <a href="#!/cn">Computer Networks</a>
+        <a href="#!/ai">Artificial Intelligence</a>
+    </nav>
+
+    <div ng-view></div>
+
+</body>
+</html>
+

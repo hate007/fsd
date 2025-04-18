@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        label, input {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Employee Registration Form</h2>
+
+    <form id="employeeForm" onsubmit="return validateEmployeeForm()">
+        <label for="name">Employee Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+
+        <label for="joiningDate">Joining Date:</label>
+        <input type="date" id="joiningDate" name="joiningDate" required>
+
+        <label for="salary">Salary (₹):</label>
+        <input type="number" id="salary" name="salary" required>
+
+        <div class="error" id="errorMsg"></div>
+
+        <input type="submit" value="Register">
+    </form>
+
+    <script>
+        function validateEmployeeForm() {
+            const dob = new Date(document.getElementById("dob").value);
+            const joiningDate = new Date(document.getElementById("joiningDate").value);
+            const salary = parseFloat(document.getElementById("salary").value);
+            const errorMsg = document.getElementById("errorMsg");
+
+            errorMsg.textContent = ""; // Reset error
+
+            const today = new Date();
+            const age = today.getFullYear() - dob.getFullYear();
+            const m = today.getMonth() - dob.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+
+            if (isNaN(dob.getTime())) {
+                errorMsg.textContent = "Please enter a valid Date of Birth.";
+                return false;
+            }
+
+            if (age < 18) {
+                errorMsg.textContent = "Employee must be at least 18 years old.";
+                return false;
+            }
+
+            if (isNaN(joiningDate.getTime())) {
+                errorMsg.textContent = "Please enter a valid Joining Date.";
+                return false;
+            }
+
+            if (joiningDate <= dob) {
+                errorMsg.textContent = "Joining date must be after Date of Birth.";
+                return false;
+            }
+
+            if (joiningDate > today) {
+                errorMsg.textContent = "Joining date cannot be in the future.";
+                return false;
+            }
+
+            if (isNaN(salary) || salary <= 0) {
+                errorMsg.textContent = "Salary must be a positive number.";
+                return false;
+            }
+
+            alert("Employee registered successfully!");
+            return true;
+        }
+    </script>
+
+</body>
+</html>
+

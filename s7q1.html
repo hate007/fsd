@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="dateTimeApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Date & Time</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 50px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 28px;
+      color: #444;
+    }
+    .clock {
+      font-size: 24px;
+      color: #2a9d8f;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body ng-controller="TimeController">
+
+  <h1>Current System Date & Time</h1>
+  <div class="clock">
+    {{ currentTime | date:'fullDate' }}<br>
+    {{ currentTime | date:'mediumTime' }}
+  </div>
+
+  <script>
+    angular.module('dateTimeApp', [])
+      .controller('TimeController', ['$scope', '$interval', function($scope, $interval) {
+        $scope.currentTime = new Date();
+
+        $interval(function() {
+          $scope.currentTime = new Date();
+        }, 1000); // update every 1 second
+      }]);
+  </script>
+
+</body>
+</html>
+

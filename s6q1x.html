@@ -1,0 +1,28 @@
+<html lang="en" ng-app="clickApp">
+<head>
+<title>AngularJS Click Example</title>
+<script
+src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/
+angular.min.js"></script>
+</head>
+<body ng-controller="clickController">
+<button ng-click="showAlert()">Click Me</button>
+<script>
+angular.module('clickApp', [])
+.controller('clickController', ($scope) =>
+$scope.showAlert = () => alert('Button Clicked!'));
+</script>
+</body>
+</html>
+<!-- We define an AngularJS module named 'clickApp'.
+We create a controller named 'clickController' within
+the module.
+Inside the controller, we define a function
+$scope.showAlert that displays an alert when called.
+The button in the HTML has the ng-click directive
+set to showAlert(), meaning that the showAlert function
+will be executed when the button is clicked.
+When you open this HTML file in a browser and click the
+"Click Me" button, it will trigger the showAlert function,
+and you'll see an alert with the message "Button
+Clicked!".*/→

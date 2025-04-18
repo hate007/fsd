@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="formApp">
+<head>
+  <meta charset="utf-8">
+  <title>Form Validation</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    input { margin-bottom: 10px; display: block; padding: 5px; width: 300px; }
+    .valid { color: green; }
+    .invalid { color: red; }
+  </style>
+</head>
+<body ng-controller="FormController">
+
+  <h2>Student Information Form</h2>
+
+  <form ng-submit="submitForm()">
+
+    <label>Name:</label>
+    <input type="text" ng-model="user.name" placeholder="Enter name" />
+
+    <label>Address:</label>
+    <input type="text" ng-model="user.address" placeholder="Enter address" />
+
+    <label>Mobile Number:</label>
+    <input type="text" ng-model="user.mobile" placeholder="10-digit number" />
+
+    <label>Pin Code:</label>
+    <input type="text" ng-model="user.pincode" placeholder="6-digit pin" />
+
+    <label>Email:</label>
+    <input type="text" ng-model="user.email" placeholder="Enter email" />
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <div ng-if="message" ng-class="{'valid': isValid, 'invalid': !isValid}">
+    {{message}}
+  </div>
+
+  <script>
+    angular.module('formApp', [])
+      .controller('FormController', ['$scope', function($scope) {
+        $scope.user = {};
+        $scope.message = '';
+        $scope.isValid = false;
+
+        function isValidEmail(email) {
+          if (!email) return false;
+          const atCount = (email.match(/@/g) || []).length;
+          const dotCount = (email.match(/\./g) || []).length;
+          return atCount === 1 && dotCount >= 1;
+        }
+
+        $scope.submitForm = function() {
+          const nameRegex = /^[A-Za-z\s]+$/;
+          const mobileRegex = /^\d{10}$/;
+          const pincodeRegex = /^\d{6}$/;
+          const requiredAddress = "SPPU M.Sc. Computer Science Syllabus 2023-24";
+
+          if (!$scope.user.name || !nameRegex.test($scope.user.name)) {
+            $scope.message = "Name should contain characters only.";
+            $scope.isValid = false;
+          } else if (!$scope.user.address || !$scope.user.address.includes(requiredAddress)) {
+            $scope.message = "Address must contain: " + requiredAddress;
+            $scope.isValid = false;
+          } else if (!mobileRegex.test($scope.user.mobile)) {
+            $scope.message = "Mobile number must be exactly 10 digits.";
+            $scope.isValid = false;
+          } else if (!pincodeRegex.test($scope.user.pincode)) {
+            $scope.message = "Pin code must be exactly 6 digits.";
+            $scope.isValid = false;
+          } else if (!isValidEmail($scope.user.email)) {
+            $scope.message = "Email must contain exactly one '@' and at least one '.'";
+            $scope.isValid = false;
+          } else {
+            $scope.message = "All inputs are valid. ✅";
+            $scope.isValid = true;
+          }
+        };
+      }]);
+  </script>
+</body>
+</html>
+

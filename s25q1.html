@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="locationApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Show Page Location</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .info {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body ng-controller="LocationController">
+
+  <h2>Current Page Location</h2>
+
+  <div class="info"><strong>Full URL:</strong> {{ fullUrl }}</div>
+  <div class="info"><strong>Protocol:</strong> {{ protocol }}</div>
+  <div class="info"><strong>Host:</strong> {{ host }}</div>
+  <div class="info"><strong>Port:</strong> {{ port }}</div>
+  <div class="info"><strong>Path:</strong> {{ path }}</div>
+
+  <script>
+    angular.module('locationApp', [])
+      .controller('LocationController', ['$scope', '$location', function($scope, $location) {
+        $scope.fullUrl = $location.absUrl();
+        $scope.protocol = $location.protocol();
+        $scope.host = $location.host();
+        $scope.port = $location.port();
+        $scope.path = $location.path();
+      }]);
+  </script>
+
+</body>
+</html>
+

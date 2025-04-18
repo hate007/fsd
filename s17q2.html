@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="studentApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #999;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body ng-controller="StudentController">
+
+    <h2>Student Details</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Course</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="student in students">
+                <td>{{student.rollNo}}</td>
+                <td>{{student.name}}</td>
+                <td>{{student.age}}</td>
+                <td>{{student.course}}</td>
+                <td>{{student.email}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        // Define the AngularJS app and controller
+        angular.module("studentApp", []).controller("StudentController", function($scope) {
+            $scope.students = [
+                { rollNo: 1, name: "Anita Sharma", age: 22, course: "M.Sc CS", email: "anita@example.com" },
+                { rollNo: 2, name: "Ravi Kumar", age: 23, course: "M.Sc CS", email: "ravi@example.com" },
+                { rollNo: 3, name: "Priya Das", age: 21, course: "M.Sc CS", email: "priya@example.com" },
+                { rollNo: 4, name: "Mohit Singh", age: 24, course: "M.Sc CS", email: "mohit@example.com" },
+                { rollNo: 5, name: "Sneha Mehta", age: 22, course: "M.Sc CS", email: "sneha@example.com" },
+                { rollNo: 6, name: "Aman Verma", age: 25, course: "M.Sc CS", email: "aman@example.com" },
+                { rollNo: 7, name: "Divya Joshi", age: 23, course: "M.Sc CS", email: "divya@example.com" },
+                { rollNo: 8, name: "Nikhil Rao", age: 22, course: "M.Sc CS", email: "nikhil@example.com" },
+                { rollNo: 9, name: "Kavita Patil", age: 21, course: "M.Sc CS", email: "kavita@example.com" },
+                { rollNo: 10, name: "Saurabh Gupta", age: 24, course: "M.Sc CS", email: "saurabh@example.com" }
+            ];
+        });
+    </script>
+
+</body>
+</html>
+

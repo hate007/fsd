@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        label, input {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Student Registration Form</h2>
+
+    <form id="registrationForm" onsubmit="return validateForm()">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName">
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName">
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age">
+
+        <div class="error" id="errorMessage"></div>
+
+        <input type="submit" value="Register">
+    </form>
+
+    <script>
+        function validateForm() {
+            const firstName = document.getElementById("firstName").value.trim();
+            const lastName = document.getElementById("lastName").value.trim();
+            const age = parseInt(document.getElementById("age").value);
+            const errorMessage = document.getElementById("errorMessage");
+
+            // Reset error message
+            errorMessage.textContent = "";
+
+            // Regex for alphabetic characters only
+            const namePattern = /^[A-Za-z]+$/;
+
+            if (!namePattern.test(firstName)) {
+                errorMessage.textContent = "First name should contain only alphabets.";
+                return false;
+            }
+
+            if (!namePattern.test(lastName)) {
+                errorMessage.textContent = "Last name should contain only alphabets.";
+                return false;
+            }
+
+            if (isNaN(age) || age < 18 || age > 50) {
+                errorMessage.textContent = "Age must be a number between 18 and 50.";
+                return false;
+            }
+
+            alert("Form submitted successfully!");
+            return true;
+        }
+    </script>
+
+</body>
+</html>
+
