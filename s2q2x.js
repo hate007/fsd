@@ -20,16 +20,10 @@ const server = http.createServer((req, res) => {
     req.on('data', chunk => (body += chunk));
     req.on('end', () => {
       const { file1, file2 } = querystring.parse(body);
-
-      try {
-        const data = fs.readFileSync(file1, 'utf8');
-        fs.appendFileSync(file2, data);
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end(`<p>Successfully appended contents of "${file1}" into "${file2}".</p><a href="/">Go Back</a>`);
-      } catch (err) {
-        res.writeHead(500, { 'Content-Type': 'text/html' });
-        res.end(`<p> Error: ${err.message}</p><a href="/">Try Again</a>`);
-      }
+      const data = fs.readFileSync(file1, 'utf8');
+      fs.appendFileSync(file2, data);
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.end(`<p>Successfully appended contents of "${file1}" into "${file2}".</p><a href="/">Go Back</a>`);
     });
   }
 });
